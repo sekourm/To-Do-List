@@ -1,0 +1,178 @@
+<div class="wrapper">
+    <div class="sidebar" data-color="{{theme}}">
+        <div class="sidebar-wrapper">
+            <div class="logo">
+                <a class="simple-text" href="#/dashboard">
+                    Bienvenue <br/> {{lastname}} {{name}}
+                </a>
+            </div>
+
+            <ul class="nav">
+                <li>
+                    <a href="#/dashboard">
+                        <i class="pe-7s-graph"></i>
+                        <p>Page d'accueil</p>
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="#/profil">
+                        <i class="pe-7s-user"></i>
+                        <p>Profile utilisateur</p>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="main-panel">
+        <nav class="navbar navbar-default navbar-fixed">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button class="navbar-toggle" data-target="#navigation-example-2" data-toggle="collapse"
+                            type="button">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#/profil">Profil utilisateur</a>
+                </div>
+                <div class="collapse navbar-collapse">
+                    <!--<ul class="nav navbar-nav navbar-left">-->
+                    <!--<li>-->
+                    <!--<form class="navbar-form" role="search">-->
+                    <!--<input type="text" class="form-control" placeholder="Search" name="q">-->
+                    <!--</form>-->
+                    <!--</li>-->
+                    <!--</ul>-->
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="#">
+                                Se déconnecter
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <div class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="card">
+                            <div class="header">
+                                <h4 class="title">Changer le théme</h4>
+                            </div>
+                            <div style="padding-bottom: 30px;">
+                                <div class="row color-padding">
+                                    <div class="col-md-4 col-md-offset-1 change-color change-blue"
+                                         ng-click="ChangeBlue()"></div>
+                                    <div class="col-md-4 col-md-offset-1 change-color change-red"
+                                         ng-click="ChangeRed()"></div>
+                                </div>
+                                <div class="row color-padding">
+                                    <div class="col-md-4 col-md-offset-1 change-color change-purple"
+                                         ng-click="ChangePurple()"></div>
+                                    <div class="col-md-4 col-md-offset-1 change-color change-orange"
+                                         ng-click="ChangeOrange()"></div>
+                                </div>
+                                <div class="row color-padding">
+                                    <div class="col-md-4 col-md-offset-1 change-color change-green"
+                                         ng-click="ChangeGreen()"></div>
+                                    <div class="col-md-4 col-md-offset-1 change-color change-azure"
+                                         ng-click="ChangeAzure()"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="header">
+                                <h4 class="title">Modifier le profil</h4>
+                            </div>
+                            <div class="content">
+                                <form>
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Nom</label>
+                                                <input class="form-control" ng-model="name" placeholder="Nom"
+                                                       type="text" value="{{name}}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Prénom</label>
+                                                <input class="form-control" ng-model="lastname" placeholder="Prénom"
+                                                       type="text" value="{{lastname}}">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label>Email</label>
+                                                <input class="form-control" disabled ng-model="email"
+                                                       placeholder="Email"
+                                                       type="text" value="{{email}}">
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label>A propos de moi</label>
+                                                <textarea class="form-control" ng-model="biographie"
+                                                          placeholder="Une courte description"
+                                                          rows="5">{{biographie}}</textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <button class="btn btn-info btn-fill pull-right"
+                                            ng-click="UpdateProfil(name,lastname,email,biographie)"
+                                            type="submit">Modifier
+                                    </button>
+                                    <div class="clearfix"></div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card card-user">
+                            <div class="image" style="text-align: center;padding-top: 20px;">
+                                <h4 class="title">{{name}}<br/>
+                                    <small>{{lastname}}</small>
+                                </h4>
+                            </div>
+                            <div class="content">
+                                <div class="inputWrapper2" ng-hide="file">
+                                    <input alt="file" base-sixty-four-input class="fileInput hiddens"
+                                           ng-change="trigger(file)"
+                                           ng-model='file' type="file">
+                                    <img class="image-profil" ng-src="{{photo}}">
+                                </div>
+                                <div class="inputWrapper2" ng-show="file">
+                                    <input alt="file" base-sixty-four-input class="fileInput hiddens"
+                                           ng-change="trigger(file)"
+                                           ng-model='file' type="file">
+                                    <img class="image-profil" ng-src="data:{{file.filetype}};base64,{{file.base64}}">
+                                </div>
+                                <p class="description text-center">
+                                    {{biographie}}
+                                </p>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

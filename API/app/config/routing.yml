@@ -1,0 +1,83 @@
+app_show_categories:
+    path : /show/categories
+    defaults:  { _controller: AppBundle:Categories:ShowCategories }
+
+app_show_one_categories:
+    path : /show/categories/{user_id}
+    defaults:  { _controller: AppBundle:Categories:ShowCategoriesOne }
+
+app_add_categories:
+    path : /add/categories/{name}/{user_id}
+    defaults:  { _controller: AppBundle:Categories:AddCategories }
+
+app_update_categories:
+    path : /update/categories/{categorie_id}/{name}
+    defaults:  { _controller: AppBundle:Categories:UpdateCategories }
+
+app_delete_categories:
+    path : /delete/categories/{categorie_id}
+    defaults:  { _controller: AppBundle:Categories:DeleteCategories }
+
+app_show_tasks:
+    path : /show/tasks
+    defaults:  { _controller: AppBundle:Tasks:ShowTasks }
+
+app_show_one_tasks:
+    path : /show/tasks/{tasks_id}
+    defaults:  { _controller: AppBundle:Tasks:ShowOneTasks }
+
+app_show_one_tasks_by_user:
+    path : /show/tasks/user/{user_id}
+    defaults:  { _controller: AppBundle:Tasks:ShowAllByUser }
+
+app_add_tasks:
+    path : /add/tasks/{categorie_id}/{title}/{description}
+    defaults:  { _controller: AppBundle:Tasks:AddTasks }
+
+app_update_tasks:
+    path : /update/tasks/{task_id}/{categorie_id}/{title}/{description}
+    defaults:  { _controller: AppBundle:Tasks:UpdateTasks }
+
+app_delete_tasks:
+    path : /delete/tasks/{task_id}
+    defaults:  { _controller: AppBundle:Tasks:DeleteTasks }
+
+app_show_profiles:
+    path : /show/profiles
+    defaults:  { _controller: AppBundle:Profiles:ShowProfiles }
+
+app_show_one_profiles:
+    path : /show/profiles/{profile_id}
+    defaults:  { _controller: AppBundle:Profiles:ShowProfilesOne }
+
+app_add_profiles:
+    path : /add/profiles
+    defaults:  { _controller: AppBundle:Profiles:AddProfiles }
+
+app_update_profiles:
+    path : /update/profiles
+    defaults:  { _controller: AppBundle:Profiles:UpdateProfiles }
+
+app_update_photos:
+    path : /update/photos
+    defaults:  { _controller: AppBundle:Profiles:UpdatePhotos }
+
+app_update_themes:
+    path : /update/themes
+    defaults:  { _controller: AppBundle:Profiles:UpdateThemes }
+
+app_delete_profiles:
+    path : /delete/profiles/{profile_id}
+    defaults:  { _controller: AppBundle:Profiles:DeleteProfiles }
+
+app_authentificate_profiles:
+    path : /authentification/profiles
+    defaults:  { _controller: AppBundle:Profiles:AuthentificationProfiles }
+
+app_show_voices:
+    path : /show/voices
+    defaults:  { _controller: AppBundle:Voices:ShowVoices }
+
+app_show_tables:
+    path : /show/tables
+    defaults:  { _controller: AppBundle:Tables:ShowTables }
