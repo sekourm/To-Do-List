@@ -11,6 +11,11 @@ angular.module('myApp', ['ngRoute', 'naif.base64', 'ngSanitize', 'ngCookies', 'd
                 templateUrl: 'templates/register.html',
                 controller: 'register'
             })
+            .when('/dashboard/admin/:userId', {
+                url: "/dashboard/admin/:userId",
+                templateUrl: 'templates/dashboard-admin.html',
+                controller: 'adminDashboard'
+            })
             .when('/dashboard', {
                 url: "/dashboard",
                 templateUrl: 'templates/dashboard.html',

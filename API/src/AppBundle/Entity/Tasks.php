@@ -32,6 +32,11 @@ class Tasks
     private $description;
 
     /**
+     * @ORM\Column(name="admin_id", type="integer")
+     */
+    private $adminId;
+
+    /**
      * @ORM\Column(name="categorie_id", type="integer")
      */
     private $categorie_id;
@@ -225,5 +230,21 @@ class Tasks
     public function getCategorieId()
     {
         return $this->categorie_id;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAdminId()
+    {
+        return $this->adminId;
+    }
+
+    /**
+     * @param mixed $adminId
+     */
+    public function setAdminId($adminId)
+    {
+        $this->adminId = $adminId;
     }
 }

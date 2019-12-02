@@ -82,10 +82,10 @@ app_authentificate_profiles:
     path : /authentification/profiles
     defaults:  { _controller: AppBundle:Profiles:AuthentificationProfiles }
 
-app_show_voices:
-    path : /show/voices
-    defaults:  { _controller: AppBundle:Voices:ShowVoices }
+app_add_tasks_admin:
+    path : /add/tasks/admin/{categorie_id}/{title}/{description}/{admin_id}
+    defaults:  { _controller: AppBundle:Admin:AddTasks }
 
-app_show_tables:
-    path : /show/tables
-    defaults:  { _controller: AppBundle:Tables:ShowTables }
+app_add_categories_admin:
+    path: /add/categories/admin/{name}/{user_id}/{admin_id}
+    defaults:  { _controller: AppBundle:Admin:AddCategories }

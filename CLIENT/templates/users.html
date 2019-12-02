@@ -82,7 +82,9 @@
                                 <td>{{user.id}}</td>
                                 <td>{{user.lastname}}</td>
                                 <td>{{user.name}}</td>
-                                <td>{{user.email}}</td>
+
+                                <td ng-if="user.isAdmin == false"><a href="#/dashboard/admin/{{ user.id }}">{{user.email}}</a></td>
+                                <td ng-if="user.isAdmin == true">{{user.email}}</td>
                                 <td>
                                     <span ng-if="user.active == 0">
                                         Bannie
