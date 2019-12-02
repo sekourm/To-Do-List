@@ -24,7 +24,7 @@ class ProfilesController extends Controller
         $serializer = new Serializer($normalizers, $encoders);
 
         $em = $this->getDoctrine()->getManager();
-        $categories = $em->getRepository('AppBundle:Profiles')->findBy(array('isAdmin' => '0'));
+        $categories = $em->getRepository('AppBundle:Profiles')->findAll();
 
         $response = new Response($serializer->serialize($categories, 'json'));
         return $response;

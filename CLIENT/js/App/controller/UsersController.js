@@ -11,6 +11,7 @@ angular.module('myApp')
             url: link,
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}
         }).then(function successCallback(data) {
+            $scope.myId = data.data['id'];
             $scope.photo = data.data['photo'];
             $scope.name = data.data['name'];
             $scope.lastname = data.data['lastname'];
