@@ -43,7 +43,11 @@ show_one_profiles_path : /show/profiles/{profile_id}
 
 add_profiles_path: /add/profiles/{name}/{lastname}/{password}/{email}/{photo}
 
-delete_profiles_path : /delete/profiles/{profile_id}
+active_profiles /active/profiles/{profile_id}
+
+banne_profiles /banne/profiles/{profile_id}
+
+remove_profiles_path : /delete/profiles/{profile_id}
 
 authentificate_profiles_path : /authentification/profiles/{email}/{password}
 
