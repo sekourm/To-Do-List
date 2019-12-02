@@ -66,9 +66,17 @@ app_update_themes:
     path : /update/themes
     defaults:  { _controller: AppBundle:Profiles:UpdateThemes }
 
-app_delete_profiles:
+app_banne_profiles:
+    path : /banne/profiles/{profile_id}
+    defaults:  { _controller: AppBundle:Profiles:BanneProfiles }
+
+app_remove_profiles:
     path : /delete/profiles/{profile_id}
-    defaults:  { _controller: AppBundle:Profiles:DeleteProfiles }
+    defaults:  { _controller: AppBundle:Profiles:RemoveProfileAction }
+
+app_active_profiles:
+    path : /active/profiles/{profile_id}
+    defaults:  { _controller: AppBundle:Profiles:ActiveProfilesAction }
 
 app_authentificate_profiles:
     path : /authentification/profiles
