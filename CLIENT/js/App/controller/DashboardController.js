@@ -9,10 +9,7 @@ angular.module('myApp')
             url: link,
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}
         }).then(function successCallback(data) {
-
             $scope.MyTheme = data.data['theme'];
-
-
         }, function errorCallback(error) {
         });
     })
