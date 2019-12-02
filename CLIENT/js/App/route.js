@@ -26,5 +26,10 @@ angular.module('myApp', ['ngRoute', 'naif.base64', 'ngSanitize', 'ngCookies', 'd
                 templateUrl: 'templates/profil.html',
                 controller: 'profil'
             })
+            .when('/users', {
+                url: "/users",
+                templateUrl: 'templates/users.html',
+                controller: 'users'
+            })
             .otherwise({redirectTo: '/'});
     });

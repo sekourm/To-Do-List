@@ -87,6 +87,7 @@ angular.module('myApp')
             $scope.theme = data.data['theme'];
             $scope.variable1 = data.data['theme'];
             $scope.biographie = data.data['biographie'];
+            $scope.isAdmin = data.data['isAdmin'];
 
         }, function errorCallback(error) {
         });

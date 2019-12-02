@@ -16,6 +16,7 @@ angular.module('myApp')
             $scope.email = data.data['email'];
             $scope.theme = data.data['theme'];
             $scope.biographie = data.data['biographie'];
+            $scope.isAdmin = data.data['isAdmin'];
 
         }, function errorCallback(error) {
             console.log('error', error);

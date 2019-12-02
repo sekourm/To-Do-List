@@ -1,0 +1,115 @@
+<div class="wrapper">
+    <div class="sidebar" data-color="{{theme}}">
+        <div class="sidebar-wrapper">
+            <div class="logo">
+                <a class="simple-text" href="#/dashboard">
+                    Bienvenue <br/> {{lastname}} {{name}}
+                </a>
+            </div>
+
+            <ul class="nav">
+                <li>
+                    <a href="#/dashboard">
+                        <i class="pe-7s-graph"></i>
+                        <p>Page d'accueil</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="#/profil">
+                        <i class="pe-7s-user"></i>
+                        <p>Profile utilisateur</p>
+                    </a>
+                </li>
+                <li class="active" ng-if="isAdmin == true">
+                    <a href="#/users">
+                        <i class="pe-7s-users"></i>
+                        <p>Liste des utilisateurs</p>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="main-panel">
+        <nav class="navbar navbar-default navbar-fixed">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button class="navbar-toggle" data-target="#navigation-example-2" data-toggle="collapse"
+                            type="button">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#/users">Liste des utilisateurs</a>
+                </div>
+                <div class="collapse navbar-collapse">
+                    <!--<ul class="nav navbar-nav navbar-left">-->
+                    <!--<li>-->
+                    <!--<form class="navbar-form" role="search">-->
+                    <!--<input type="text" class="form-control" placeholder="Search" name="q">-->
+                    <!--</form>-->
+                    <!--</li>-->
+                    <!--</ul>-->
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="#">
+                                Se déconnecter
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <div class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>id</th>
+                            <th>Prénom</th>
+                            <th>Nom</th>
+                            <th>adresse email</th>
+                            <th>Status</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="user in users">
+                                <td>{{user.id}}</td>
+                                <td>{{user.lastname}}</td>
+                                <td>{{user.name}}</td>
+                                <td>{{user.email}}</td>
+                                <td >
+                                    <span ng-if="user.active == 0">
+                                        Bannie
+                                    </span>
+                                    <span ng-if="user.active == 1">
+                                        Actif
+                                    </span>
+                                </td>
+                                <td>
+                                    <a ng-if="user.active == 0" href="" ng-click="debanne(user.id)">
+                                        Débannir
+                                    </a>
+                                    <a  ng-if="user.active == 1" href="" ng-click="banne(user.id)">
+                                        Bannir
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="" ng-click="delete(user.id)">
+                                        Supprimer
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

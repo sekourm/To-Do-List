@@ -1,3 +1,9 @@
+user@user.fr
+user
+
+admin@admin.fr
+admin
+
 Run the project
 ===============
 
