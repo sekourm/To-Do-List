@@ -72,11 +72,11 @@ app_banne_profiles:
 
 app_remove_profiles:
     path : /delete/profiles/{profile_id}
-    defaults:  { _controller: AppBundle:Profiles:RemoveProfileAction }
+    defaults:  { _controller: AppBundle:Profiles:RemoveProfile }
 
 app_active_profiles:
     path : /active/profiles/{profile_id}
-    defaults:  { _controller: AppBundle:Profiles:ActiveProfilesAction }
+    defaults:  { _controller: AppBundle:Profiles:ActiveProfiles }
 
 app_authentificate_profiles:
     path : /authentification/profiles

@@ -36,33 +36,47 @@ angular.module('myApp')
             console.log('error', error);
         });
 
+        $scope.disconnect = function ($event) {
+            $event.stopPropagation();
+            $cookieStore.remove('myId');
+            $location.path("/login");
+        };
+
         $scope.banne = function (userId) {
-            var link = 'http://localhost:8000/banne/profiles/' + userId;
+            var link = 'http://localhost:8000/banne/profiles/'+userId;
             $http({
-                method: 'POST',
+                method: 'GET',
                 url: link,
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'}
             }).then(function successCallback(data) {
-                $timeout(function () {
-                    $route.reload();
-                }, 0);
+                location.reload();
             }, function errorCallback(error) {
             });
         };
 
-        // $scope.banne = function (userId) {
-        //     var link = 'http://localhost:8000/banne/profiles/' + userId;
-        //     $http({
-        //         method: 'POST',
-        //         url: link,
-        //         headers: {'Content-Type': 'application/x-www-form-urlencoded'}
-        //     }).then(function successCallback(data) {
-        //         $timeout(function () {
-        //             $route.reload();
-        //         }, 0);
-        //     }, function errorCallback(error) {
-        //     });
-        // };
+        $scope.debanne = function (userId) {
+            var link = 'http://localhost:8000/active/profiles/'+userId;
+            $http({
+                method: 'GET',
+                url: link,
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+            }).then(function successCallback(data) {
+                location.reload();
+            }, function errorCallback(error) {
+            });
+        };
+
+        $scope.delete = function (userId) {
+            var link = 'http://localhost:8000/delete/profiles/'+userId;
+            $http({
+                method: 'GET',
+                url: link,
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+            }).then(function successCallback(data) {
+                location.reload();
+            }, function errorCallback(error) {
+            });
+        };
 
 
     });

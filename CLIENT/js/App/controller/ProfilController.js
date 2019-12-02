@@ -22,6 +22,11 @@ angular.module('myApp')
             console.log('error', error);
         });
 
+        $scope.disconnect = function ($event) {
+            $event.stopPropagation();
+            $cookieStore.remove('myId');
+            $location.path("/login");
+        };
 
         $scope.UpdateProfil = function (name, lastname, email, biographie) {
             var link = 'http://localhost:8000/update/profiles';

@@ -26,8 +26,8 @@ angular.module('myApp')
             $location.path("/register");
         }
 
-        $scope.disconnect = function (e) {
-            e.preventDefault();
+        $scope.disconnect = function ($event) {
+            $event.stopPropagation();
             $cookieStore.remove('myId');
             $location.path("/login");
         };

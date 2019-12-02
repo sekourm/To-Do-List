@@ -199,7 +199,7 @@ class ProfilesController extends Controller
         return $response;
     }
 
-    public function BnneProfilesAction($profile_id)
+    public function BanneProfilesAction($profile_id)
     {
         $encoders = array(new XmlEncoder(), new JsonEncoder());
         $normalizers = array(new GetSetMethodNormalizer());
@@ -211,13 +211,6 @@ class ProfilesController extends Controller
         if (!$profile) {
             $response = new Response($serializer->serialize(array('message' => 'false'), 'json'));
             return $response;
-        }
-
-        $tasks = $em->getRepository('AppBundle:Tasks')->findBy(array('user_id' => $profile_id));
-
-        foreach ($tasks as $value) {
-            $value->setActive(0);
-            $em->persist($value);
         }
 
         $profile->setActive(0);
@@ -235,18 +228,11 @@ class ProfilesController extends Controller
         $serializer = new Serializer($normalizers, $encoders);
 
         $em = $this->getDoctrine()->getManager();
-        $profile = $em->getRepository('AppBundle:Profiles')->findBy(array('user_id' => $profile_id, "active" => 0));
+        $profile = $em->getRepository('AppBundle:Profiles')->findOneBy(array('id' => $profile_id, "active" => 0));
 
         if (!$profile) {
             $response = new Response($serializer->serialize(array('message' => 'false'), 'json'));
             return $response;
-        }
-
-        $tasks = $em->getRepository('AppBundle:Tasks')->findBy(array('user_id' => $profile_id));
-
-        foreach ($tasks as $value) {
-            $value->setActive(1);
-            $em->persist($value);
         }
 
         $profile->setActive(1);
@@ -296,6 +282,7 @@ class ProfilesController extends Controller
         }
 
         $em->remove($profile);
+        $em->flush();
 
         $response = new Response($serializer->serialize(array('message' => 'true'), 'json'));
 
