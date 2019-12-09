@@ -1,0 +1,70 @@
+version: '2'
+
+services:
+   db:
+     build: ./mysql
+     container_name: mysql-epi
+     networks:
+          vpcbr:
+            ipv4_address: 10.5.0.4
+     volumes:
+       - db_data:/var/lib/mysql
+     environment:
+       MYSQL_ROOT_PASSWORD: root
+       MYSQL_DATABASE: "database"
+
+   apache-back:
+    build: ./php
+    container_name: php-epi-back
+    ports:
+      - '8001:80'
+    networks:
+          vpcbr:
+            ipv4_address: 10.5.0.5
+    restart: always
+    volumes:
+       - /var/log/apache2/error.log:/var/log/apache2/error.log
+       - /var/log/apache2/access.log:/var/log/apache2/access.log
+       - ${PROJECT_DIRECOTRY_BACK}:/var/www/html
+    depends_on:
+      - db
+
+   apache-front:
+       build: ./php
+       container_name: php-epi-front
+       ports:
+           - '8002:80'
+       networks:
+           vpcbr:
+               ipv4_address: 10.5.0.7
+       restart: always
+       volumes:
+           - /var/log/apache2/error.log:/var/log/apache2/error.log
+           - /var/log/apache2/access.log:/var/log/apache2/access.log
+           - ${PROJECT_DIRECOTRY_FRONT}:/var/www/html
+       depends_on:
+           - db
+   phpmyadmin:
+        image: phpmyadmin/phpmyadmin
+        container_name: pma-epi
+        ports:
+          - 8081:80
+        environment:
+          - PMA_HOST=db
+          - PMA_USER=root
+          - PMA_PASSWORD=root
+        links:
+          - db
+        networks:
+              vpcbr:
+                ipv4_address: 10.5.0.6
+volumes:
+    db_data:
+
+networks:
+  vpcbr:
+    driver: bridge
+    ipam:
+     config:
+       - subnet: 10.5.0.0/16
+         gateway: 10.5.0.1
