@@ -1,19 +1,9 @@
 var variable1 = true;
 angular.module('myApp')
-    .controller('demoController', function ($scope, $http, $window, $rootScope, $cookieStore, $location, $route, $timeout) {
-        var myId = $cookieStore.get('myId');
-        var link = 'http://localhost:8000/show/profiles/' + myId;
+    .controller('adminDashboard', function ($scope, $http, $window, $rootScope, $cookieStore, $location, $route, $timeout, $routeParams) {
 
-        $http({
-            method: 'POST',
-            url: link,
-            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
-        }).then(function successCallback(data) {
-            $scope.MyTheme = data.data['theme'];
-        }, function errorCallback(error) {
-        });
-    })
-    .controller('dashboard', function ($scope, $http, $window, $rootScope, $cookieStore, $location, $route, $timeout) {
+        var user_id = $routeParams.userId;
+
         var myId = $cookieStore.get('myId');
         $scope.showmodifytasks = false;
         $scope.tasksShow = false;
@@ -77,6 +67,7 @@ angular.module('myApp')
             url: link,
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}
         }).then(function successCallback(data) {
+            $scope.id = data.data['id'];
             $scope.photo = data.data['photo'];
             $scope.name = data.data['name'];
             $scope.lastname = data.data['lastname'];
@@ -86,23 +77,46 @@ angular.module('myApp')
             $scope.biographie = data.data['biographie'];
             $scope.isAdmin = data.data['isAdmin'];
 
+            if (data.data['isAdmin'] === false) {
+                $location.path("/dashboard");
+            }
+
         }, function errorCallback(error) {
         });
 
+        var link = 'http://localhost:8000/show/profiles/' + user_id;
+
+        $http({
+            method: 'POST',
+            url: link,
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+        }).then(function successCallback(data) {
+
+            $scope.user_id = data.data['id'];
+            $scope.user_name = data.data['name'];
+            $scope.user_lastname = data.data['lastname'];
+            $scope.user_email = data.data['email'];
+            $scope.user_isAdmin = data.data['isAdmin'];
+
+            if (data.data['id'] == null || data.data['isAdmin'] === true) {
+                $location.path("/dashboard");
+            }
+
+        }, function errorCallback(error) {
+        });
 
         /*** Create the Categorie **/
 
         $scope.CreateCategorie = function (categorie) {
             $scope.categorie = categorie;
-            var link = 'http://localhost:8000/add/categories/' + $scope.categorie + '/' + myId;
+
+            var link = 'http://localhost:8000/add/categories/admin/' + $scope.categorie + '/' + user_id + '/' + myId;
             $http({
                 method: 'POST',
                 url: link,
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'}
             }).then(function successCallback(data) {
-                $timeout(function () {
-                    $route.reload();
-                }, 0);
+                $route.reload();
             }, function errorCallback(error) {
             });
             $scope.categorie = null;
@@ -125,7 +139,7 @@ angular.module('myApp')
 
         /************** Show all Categorie*****************/
 
-        var link2 = 'http://localhost:8000/show/categories/' + myId;
+        var link2 = 'http://localhost:8000/show/categories/' + user_id;
         var test = [];
         var element = {};
 
@@ -138,8 +152,7 @@ angular.module('myApp')
             for (var i = 0; i < $scope.categories.data.length; i++) {
                 var test2 = $scope.categories.data[i].name;
                 element[test2] = [[], [$scope.categories.data[i].id]];
-                test.push({[test2]: [], id: $scope.categories.data[i].id, byAdmin: $scope.categories.data[i].adminId ? true : false,
-                });
+                test.push({[test2]: [], id: $scope.categories.data[i].id})
             }
             $scope.models = {selected: null, lists: element};
             var link3 = 'http://localhost:8000/show/tasks';
@@ -156,7 +169,6 @@ angular.module('myApp')
                                 label: $scope.tasks[k].title,
                                 id: $scope.tasks[k].id,
                                 description: $scope.tasks[k].description,
-                                byAdmin: $scope.tasks[k].adminId ? true : false,
                                 limit_date: $scope.tasks[k].limitDate
                             })
                         }
@@ -192,15 +204,13 @@ angular.module('myApp')
             if (title == '' || title == undefined || description == '' || description == undefined) {
                 return false;
             }
-            var link = 'http://localhost:8000/add/tasks/' + list[0] + '/' + title + '/' + description;
+            var link = 'http://localhost:8000/add/tasks/admin/' + list[0] + '/' + title + '/' + description + '/' + myId;
             $http({
                 method: 'POST',
                 url: link,
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'}
             }).then(function successCallback(data) {
-                $timeout(function () {
-                    $route.reload();
-                }, 0);
+                $route.reload();
                 $scope.tasksShow = false;
             }, function errorCallback(error) {
             });
@@ -216,9 +226,7 @@ angular.module('myApp')
                 url: link,
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'}
             }).then(function successCallback(data) {
-                $timeout(function () {
-                    $route.reload();
-                }, 1000);
+                $route.reload();
             }, function errorCallback(error) {
             });
             $scope.tasksShow = false;

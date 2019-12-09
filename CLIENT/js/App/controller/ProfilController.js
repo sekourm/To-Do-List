@@ -16,11 +16,17 @@ angular.module('myApp')
             $scope.email = data.data['email'];
             $scope.theme = data.data['theme'];
             $scope.biographie = data.data['biographie'];
+            $scope.isAdmin = data.data['isAdmin'];
 
         }, function errorCallback(error) {
             console.log('error', error);
         });
 
+        $scope.disconnect = function ($event) {
+            $event.stopPropagation();
+            $cookieStore.remove('myId');
+            $location.path("/login");
+        };
 
         $scope.UpdateProfil = function (name, lastname, email, biographie) {
             var link = 'http://localhost:8000/update/profiles';

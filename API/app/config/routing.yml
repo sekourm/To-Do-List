@@ -66,18 +66,26 @@ app_update_themes:
     path : /update/themes
     defaults:  { _controller: AppBundle:Profiles:UpdateThemes }
 
-app_delete_profiles:
+app_banne_profiles:
+    path : /banne/profiles/{profile_id}
+    defaults:  { _controller: AppBundle:Profiles:BanneProfiles }
+
+app_remove_profiles:
     path : /delete/profiles/{profile_id}
-    defaults:  { _controller: AppBundle:Profiles:DeleteProfiles }
+    defaults:  { _controller: AppBundle:Profiles:RemoveProfile }
+
+app_active_profiles:
+    path : /active/profiles/{profile_id}
+    defaults:  { _controller: AppBundle:Profiles:ActiveProfiles }
 
 app_authentificate_profiles:
     path : /authentification/profiles
     defaults:  { _controller: AppBundle:Profiles:AuthentificationProfiles }
 
-app_show_voices:
-    path : /show/voices
-    defaults:  { _controller: AppBundle:Voices:ShowVoices }
+app_add_tasks_admin:
+    path : /add/tasks/admin/{categorie_id}/{title}/{description}/{admin_id}
+    defaults:  { _controller: AppBundle:Admin:AddTasks }
 
-app_show_tables:
-    path : /show/tables
-    defaults:  { _controller: AppBundle:Tables:ShowTables }
+app_add_categories_admin:
+    path: /add/categories/admin/{name}/{user_id}/{admin_id}
+    defaults:  { _controller: AppBundle:Admin:AddCategories }

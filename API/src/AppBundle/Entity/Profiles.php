@@ -43,7 +43,6 @@ class Profiles
      */
     private $theme;
 
-
     /**
      * @var text $biographie
      *
@@ -65,6 +64,11 @@ class Profiles
      * @ORM\Column(name="active", type="boolean")
      */
     private $active;
+
+    /**
+     * @ORM\Column(name="is_admin", type="boolean")
+     */
+    private $isAdmin = 0;
 
     /**
      * @ORM\Column(name="created_at", type="datetime")
@@ -286,7 +290,7 @@ class Profiles
     /**
      * Get theme
      *
-     * @return string 
+     * @return string
      */
     public function getTheme()
     {
@@ -309,10 +313,26 @@ class Profiles
     /**
      * Get biographie
      *
-     * @return string 
+     * @return string
      */
     public function getBiographie()
     {
         return $this->biographie;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getisAdmin()
+    {
+        return $this->isAdmin;
+    }
+
+    /**
+     * @param mixed $isAdmin
+     */
+    public function setIsAdmin($isAdmin)
+    {
+        $this->isAdmin = $isAdmin;
     }
 }

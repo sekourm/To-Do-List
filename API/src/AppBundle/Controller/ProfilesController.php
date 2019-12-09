@@ -24,7 +24,7 @@ class ProfilesController extends Controller
         $serializer = new Serializer($normalizers, $encoders);
 
         $em = $this->getDoctrine()->getManager();
-        $categories = $em->getRepository('AppBundle:Profiles')->findBy(array('active' => '1'));
+        $categories = $em->getRepository('AppBundle:Profiles')->findAll();
 
         $response = new Response($serializer->serialize($categories, 'json'));
         return $response;
@@ -68,6 +68,7 @@ class ProfilesController extends Controller
         $post = json_decode($post);
 
         $name = $post->name;
+        $lastname = $post->lastname;
         $lastname = $post->lastname;
         $password = $post->password;
         $email = $post->email;
@@ -198,7 +199,7 @@ class ProfilesController extends Controller
         return $response;
     }
 
-    public function DeleteProfilesAction($profile_id)
+    public function BanneProfilesAction($profile_id)
     {
         $encoders = array(new XmlEncoder(), new JsonEncoder());
         $normalizers = array(new GetSetMethodNormalizer());
@@ -212,14 +213,29 @@ class ProfilesController extends Controller
             return $response;
         }
 
-        $tasks = $em->getRepository('AppBundle:Tasks')->findBy(array('user_id' => $profile_id));
+        $profile->setActive(0);
+        $em->flush();
 
-        foreach ($tasks as $value) {
-            $value->setActive(0);
-            $em->persist($value);
+        $response = new Response($serializer->serialize(array('message' => 'true'), 'json'));
+
+        return $response;
+    }
+
+    public function ActiveProfilesAction($profile_id)
+    {
+        $encoders = array(new XmlEncoder(), new JsonEncoder());
+        $normalizers = array(new GetSetMethodNormalizer());
+        $serializer = new Serializer($normalizers, $encoders);
+
+        $em = $this->getDoctrine()->getManager();
+        $profile = $em->getRepository('AppBundle:Profiles')->findOneBy(array('id' => $profile_id, "active" => 0));
+
+        if (!$profile) {
+            $response = new Response($serializer->serialize(array('message' => 'false'), 'json'));
+            return $response;
         }
 
-        $profile->setActive(0);
+        $profile->setActive(1);
         $em->flush();
 
         $response = new Response($serializer->serialize(array('message' => 'true'), 'json'));
@@ -249,6 +265,27 @@ class ProfilesController extends Controller
 
         $Id = $profile->getId();
         $response = new Response($serializer->serialize(array('message' => 'true', 'Id' => $Id), 'json'));
+        return $response;
+    }
+
+    public function RemoveProfileAction($profile_id) {
+        $encoders = array(new XmlEncoder(), new JsonEncoder());
+        $normalizers = array(new GetSetMethodNormalizer());
+        $serializer = new Serializer($normalizers, $encoders);
+
+        $em = $this->getDoctrine()->getManager();
+        $profile = $em->getRepository('AppBundle:Profiles')->find($profile_id);
+
+        if (!$profile) {
+            $response = new Response($serializer->serialize(array('message' => 'false'), 'json'));
+            return $response;
+        }
+
+        $em->remove($profile);
+        $em->flush();
+
+        $response = new Response($serializer->serialize(array('message' => 'true'), 'json'));
+
         return $response;
     }
 }

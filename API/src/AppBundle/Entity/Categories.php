@@ -32,6 +32,11 @@ class Categories
     private $name;
 
     /**
+     * @ORM\Column(name="admin_id", type="integer")
+     */
+    private $adminId;
+
+    /**
      * @ORM\Column(name="active", type="boolean")
      */
     private $active;
@@ -169,5 +174,21 @@ class Categories
     public function getUserId()
     {
         return $this->user_id;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAdminId()
+    {
+        return $this->adminId;
+    }
+
+    /**
+     * @param mixed $adminId
+     */
+    public function setAdminId($adminId)
+    {
+        $this->adminId = $adminId;
     }
 }

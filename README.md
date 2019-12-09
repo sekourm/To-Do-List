@@ -1,3 +1,9 @@
+user@user.fr
+user
+
+admin@admin.fr
+admin
+
 Run the project
 ===============
 
@@ -43,8 +49,16 @@ show_one_profiles_path : /show/profiles/{profile_id}
 
 add_profiles_path: /add/profiles/{name}/{lastname}/{password}/{email}/{photo}
 
-delete_profiles_path : /delete/profiles/{profile_id}
+active_profiles /active/profiles/{profile_id}
+
+banne_profiles /banne/profiles/{profile_id}
+
+remove_profiles_path : /delete/profiles/{profile_id}
 
 authentificate_profiles_path : /authentification/profiles/{email}/{password}
+
+app_add_tasks_admin: /add/tasks/admin/{categorie_id}/{title}/{description}/{admin_id}
+
+app_add_categories_admin: /add/categories/admin/{name}/{user_id}/{admin_id}
 
 </pre>

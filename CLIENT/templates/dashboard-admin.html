@@ -64,6 +64,9 @@
         <div class="content">
             <div class="container-fluid">
                 <div class="row">
+                    <div class="col-md-12">
+                        <h2>{{user_name}} {{user_lastname}} - {{user_email}} </h2>
+                    </div>
                     <form>
                         <div class="col-md-3">
                             <div class="form-group">
@@ -75,21 +78,19 @@
                         <div class="col-md-3">
                             <button class="btn btn-info btn-fill" ng-click="CreateCategorie(categorie)"
                                     style="margin-top: 25px;"
-                                    type="submit">Ajouter
+                                    type="submit">Ajouter en temp qu'admin
                             </button>
                         </div>
                     </form>
                 </div>
                 <div class="simpleDemo row" style="padding-top: 15px">
+
                     <div class="col-md-12">
                         <div class="row">
                             <div class="col-md-3" ng-repeat="(listName, list) in models.lists">
                                 <div class="panel panel-info">
                                     <div class="panel-heading">
-                                        <h3 class="panel-title">{{listName}} {{}}</h3>
-                                        <span ng-if="list[0][0].byAdmin == true" style="font-size: 11px;">
-                                            [Créer par un admin]
-                                        </span>
+                                        <h3 class="panel-title">{{listName}}</h3>
                                     </div>
                                     <div class="panel-body">
                                         <ul dnd-inserted="dropCallback2(listName,list,index)"
@@ -101,13 +102,7 @@
                                                 dnd-moved="list[0].splice($index, 1)"
                                                 ng-repeat="item in list[0]"
                                             >
-                                                <span ng-show="!showmodifytasks">
-                                                    {{item.label}}
-                                                    <span ng-if="item.byAdmin == true" style="font-size: 11px;">
-                                                        <br/>
-                                                        [Créer par un admin]
-                                                    </span>
-                                                </span>
+                                                <span ng-show="!showmodifytasks">{{item.label}}</span>
                                                 <!-- <form ng-submit="myFunc()">
                                                      <input type="text" ng-model="myValue" placeholder="{{item.label}}"/>
                                                  </form>-->
@@ -173,11 +168,10 @@
                                                 </div>
                                             </li>
                                         </ul>
-                                        <a ng-click="showKids(list[1][0])" ng-if="tasksShow == false">Créer une
-                                            tâche</a>
+                                        <a ng-click="showKids(list[1][0])" ng-if="tasksShow == false">Créer tâche en temp qu'admin</a>
                                         <div ng-if="tasksShow == true" ng-show="isShowing(list[1][0])">
                                             <div class="form-group">
-                                                <label>Créer une tâche</label>
+                                                <label>Créer tâche en temp qu'admin</label>
                                                 <input class="form-control" ng-model="title" placeholder="Create title"
                                                        type="text">
                                                 <input class="form-control" ng-model="description"
@@ -186,7 +180,7 @@
                                             </div>
                                             <button class="btn btn-info btn-fill pull-left"
                                                     ng-click="CreateTasks(list[1],title,description)"
-                                                    type="submit">Créer tache
+                                                    type="submit">Créer tâche en temp qu'admin
                                             </button>
                                             <button class="btn btn-danger btn-fill" ng-click="changeTasks()"
                                                     type="button">
