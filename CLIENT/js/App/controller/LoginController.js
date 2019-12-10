@@ -1,7 +1,7 @@
 angular.module('myApp')
     .controller('login', function ($scope, $http, $window, $rootScope, $cookieStore, $location) {
         $scope.tryToLogin = function (email, password) {
-            var link = 'http://localhost:8000/authentification/profiles';
+            var link = 'http://back.epitech/authentification/profiles';
 
             $http({
                 method: 'POST',

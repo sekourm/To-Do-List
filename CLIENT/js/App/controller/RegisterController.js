@@ -8,7 +8,7 @@ angular.module('myApp')
                 var data = {name: name, lastname: lastname, password: password, email: email}
             }
 
-            var link = 'http://localhost:8000/add/profiles';
+            var link = 'http://back.epitech/add/profiles';
             $http({
                 method: 'POST',
                 url: link,

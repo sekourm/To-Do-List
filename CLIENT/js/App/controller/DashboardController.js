@@ -2,7 +2,7 @@ var variable1 = true;
 angular.module('myApp')
     .controller('demoController', function ($scope, $http, $window, $rootScope, $cookieStore, $location, $route, $timeout) {
         var myId = $cookieStore.get('myId');
-        var link = 'http://localhost:8000/show/profiles/' + myId;
+        var link = 'http://back.epitech/show/profiles/' + myId;
 
         $http({
             method: 'POST',
@@ -43,7 +43,7 @@ angular.module('myApp')
         };
 
         $scope.deteletasks = function (Tasksid) {
-            var link = 'http://localhost:8000/delete/tasks/' + Tasksid;
+            var link = 'http://back.epitech/delete/tasks/' + Tasksid;
 
             $http({
                 method: 'POST',
@@ -70,7 +70,7 @@ angular.module('myApp')
 
         };
 
-        var link = 'http://localhost:8000/show/profiles/' + myId;
+        var link = 'http://back.epitech/show/profiles/' + myId;
 
         $http({
             method: 'POST',
@@ -94,7 +94,7 @@ angular.module('myApp')
 
         $scope.CreateCategorie = function (categorie) {
             $scope.categorie = categorie;
-            var link = 'http://localhost:8000/add/categories/' + $scope.categorie + '/' + myId;
+            var link = 'http://back.epitech/add/categories/' + $scope.categorie + '/' + myId;
             $http({
                 method: 'POST',
                 url: link,
@@ -111,7 +111,7 @@ angular.module('myApp')
         /***End of Categorie Creation**/
 
 
-        var link3 = 'http://localhost:8000/show/tasks';
+        var link3 = 'http://back.epitech/show/tasks';
 
         $http({
             method: 'POST',
@@ -125,7 +125,7 @@ angular.module('myApp')
 
         /************** Show all Categorie*****************/
 
-        var link2 = 'http://localhost:8000/show/categories/' + myId;
+        var link2 = 'http://back.epitech/show/categories/' + myId;
         var test = [];
         var element = {};
 
@@ -142,7 +142,7 @@ angular.module('myApp')
                 });
             }
             $scope.models = {selected: null, lists: element};
-            var link3 = 'http://localhost:8000/show/tasks';
+            var link3 = 'http://back.epitech/show/tasks';
             $http({
                 method: 'POST',
                 url: link3,
@@ -176,7 +176,7 @@ angular.module('myApp')
             var descrption = list[0][index].description;
 
 
-            var link = 'http://localhost:8000/update/tasks/' + tasks_id + '/' + categorie_id + '/' + title + '/' + descrption;
+            var link = 'http://back.epitech/update/tasks/' + tasks_id + '/' + categorie_id + '/' + title + '/' + descrption;
             $http({
                 method: 'POST',
                 url: link,
@@ -192,7 +192,7 @@ angular.module('myApp')
             if (title == '' || title == undefined || description == '' || description == undefined) {
                 return false;
             }
-            var link = 'http://localhost:8000/add/tasks/' + list[0] + '/' + title + '/' + description;
+            var link = 'http://back.epitech/add/tasks/' + list[0] + '/' + title + '/' + description;
             $http({
                 method: 'POST',
                 url: link,
@@ -210,7 +210,7 @@ angular.module('myApp')
             if (title == '' || title == undefined || description == '' || description == undefined) {
                 return false;
             }
-            var link = 'http://localhost:8000/update/tasks/' + tasksId + '/' + list[0] + '/' + title + '/' + description;
+            var link = 'http://back.epitech/update/tasks/' + tasksId + '/' + list[0] + '/' + title + '/' + description;
             $http({
                 method: 'POST',
                 url: link,

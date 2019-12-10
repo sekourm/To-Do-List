@@ -3,7 +3,7 @@ angular.module('myApp')
     .controller('profil', function ($scope, $http, $window, $rootScope, $cookieStore, $location) {
         var myId = $cookieStore.get('myId');
 
-        var link = 'http://localhost:8000/show/profiles/' + myId;
+        var link = 'http://back.epitech/show/profiles/' + myId;
 
         $http({
             method: 'POST',
@@ -29,7 +29,7 @@ angular.module('myApp')
         };
 
         $scope.UpdateProfil = function (name, lastname, email, biographie) {
-            var link = 'http://localhost:8000/update/profiles';
+            var link = 'http://back.epitech/update/profiles';
             var data = {name: name, lastname: lastname, email: email, biographie: biographie, profile_id: myId};
 
             $http({
@@ -45,7 +45,7 @@ angular.module('myApp')
         };
 
         $scope.trigger = function (file) {
-            var link = 'http://localhost:8000/update/photos';
+            var link = 'http://back.epitech/update/photos';
             var photo = 'data:' + file.filetype + ';base64,' + file.base64;
             var data = {photo: photo, profile_id: myId};
             $http({
@@ -61,7 +61,7 @@ angular.module('myApp')
         };
 
         $scope.ChangeBlue = function () {
-            var link = 'http://localhost:8000/update/themes';
+            var link = 'http://back.epitech/update/themes';
             var data = {theme: 'blue', profile_id: myId};
             $http({
                 method: 'POST',
@@ -75,7 +75,7 @@ angular.module('myApp')
             $scope.theme = 'blue';
         };
         $scope.ChangeRed = function () {
-            var link = 'http://localhost:8000/update/themes';
+            var link = 'http://back.epitech/update/themes';
             var data = {theme: 'red', profile_id: myId};
             $http({
                 method: 'POST',
@@ -89,7 +89,7 @@ angular.module('myApp')
             $scope.theme = 'red';
         };
         $scope.ChangePurple = function () {
-            var link = 'http://localhost:8000/update/themes';
+            var link = 'http://back.epitech/update/themes';
             var data = {theme: 'purple', profile_id: myId};
             $http({
                 method: 'POST',
@@ -103,7 +103,7 @@ angular.module('myApp')
             $scope.theme = 'purple';
         };
         $scope.ChangeOrange = function () {
-            var link = 'http://localhost:8000/update/themes';
+            var link = 'http://back.epitech/update/themes';
             var data = {theme: 'orange', profile_id: myId};
             $http({
                 method: 'POST',
@@ -117,7 +117,7 @@ angular.module('myApp')
             $scope.theme = 'orange';
         };
         $scope.ChangeGreen = function () {
-            var link = 'http://localhost:8000/update/themes';
+            var link = 'http://back.epitech/update/themes';
             var data = {theme: 'green', profile_id: myId};
             $http({
                 method: 'POST',
@@ -131,7 +131,7 @@ angular.module('myApp')
             $scope.theme = 'green';
         };
         $scope.ChangeAzure = function () {
-            var link = 'http://localhost:8000/update/themes';
+            var link = 'http://back.epitech/update/themes';
             var data = {theme: 'azure', profile_id: myId};
             $http({
                 method: 'POST',

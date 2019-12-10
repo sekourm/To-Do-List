@@ -4,7 +4,7 @@ angular.module('myApp')
 
         var myId = $cookieStore.get('myId');
 
-        var link = 'http://localhost:8000/show/profiles/' + myId;
+        var link = 'http://back.epitech/show/profiles/' + myId;
 
         $http({
             method: 'POST',
@@ -24,7 +24,7 @@ angular.module('myApp')
             console.log('error', error);
         });
 
-        var link = 'http://localhost:8000/show/profiles';
+        var link = 'http://back.epitech/show/profiles';
 
         $http({
             method: 'GET',
@@ -44,7 +44,7 @@ angular.module('myApp')
         };
 
         $scope.banne = function (userId) {
-            var link = 'http://localhost:8000/banne/profiles/'+userId;
+            var link = 'http://back.epitech/banne/profiles/'+userId;
             $http({
                 method: 'GET',
                 url: link,
@@ -56,7 +56,7 @@ angular.module('myApp')
         };
 
         $scope.debanne = function (userId) {
-            var link = 'http://localhost:8000/active/profiles/'+userId;
+            var link = 'http://back.epitech/active/profiles/'+userId;
             $http({
                 method: 'GET',
                 url: link,
@@ -68,7 +68,7 @@ angular.module('myApp')
         };
 
         $scope.delete = function (userId) {
-            var link = 'http://localhost:8000/delete/profiles/'+userId;
+            var link = 'http://back.epitech/delete/profiles/'+userId;
             $http({
                 method: 'GET',
                 url: link,
